@@ -6,11 +6,14 @@ class DNSQuery:
     self.dominio=''
 
     tipo = (ord(data[2]) >> 3) & 15   # Opcode bits
+    print data
     if tipo == 0:                     # Standard query
       ini=12
       lon=ord(data[ini])
       while lon != 0:
         self.dominio+=data[ini+1:ini+lon+1]+'.'
+        print lon
+        print self.dominio
         ini+=lon+1
         lon=ord(data[ini])
 
